@@ -1,0 +1,45 @@
+// lib/models/ticket.dart
+import 'resident.dart';
+import 'service.dart';
+
+class Ticket {
+  Resident resident;
+  Service service;
+  String date; // DD.MM.YYYY
+
+  Ticket({
+    required this.resident,
+    required this.service,
+    required this.date,
+  });
+
+  /// Стоимость оказанной услуги:
+  /// - если жилец льготник И услуга льготная (BenefitService) -> цена со скидкой
+  /// - иначе обычная цена
+  double getCost() {
+    if (resident.hasBenefits && service is BenefitService) {
+      return (service as BenefitService).finalPrice();
+    }
+    return service.price;
+  }
+
+  Map<String, dynamic> toJson() => {
+        'resident': resident.toJson(),
+        'service': service.toJson(),
+        'date': date,
+      };
+
+  factory Ticket.fromJson(Map<String, dynamic> j) => Ticket(
+        resident: Resident.fromJson(
+          Map<String, dynamic>.from(j['resident'] as Map),
+        ),
+        service: (j['service'] as Map)['type'] == 'benefit'
+            ? BenefitService.fromJson(
+                Map<String, dynamic>.from(j['service'] as Map),
+              )
+            : Service.fromJson(
+                Map<String, dynamic>.from(j['service'] as Map),
+              ),
+        date: j['date'] as String,
+      );
+}
