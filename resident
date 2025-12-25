@@ -1,0 +1,22 @@
+// lib/models/resident.dart
+import 'passport.dart';
+
+class Resident {
+  Passport passport;
+  bool hasBenefits;
+
+  Resident({
+    required this.passport,
+    required this.hasBenefits,
+  });
+
+  Map<String, dynamic> toJson() => {
+        'passport': passport.toJson(),
+        'hasBenefits': hasBenefits,
+      };
+
+  factory Resident.fromJson(Map<String, dynamic> j) => Resident(
+        passport: Passport.fromJson(Map<String, dynamic>.from(j['passport'])),
+        hasBenefits: j['hasBenefits'],
+      );
+}
