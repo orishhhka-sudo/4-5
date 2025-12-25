@@ -1,16 +1,24 @@
-# tariffs_app
+Десктопное приложение для автоматизации работы жилищно-эксплуатационной службы (ЖЭС). Приложение позволяет управлять информацией о жильцах (с льготами и без), квартирах, услугах и заявках. Реализовано два режима работы: с использованием базы данных SQLite и без неё (локальное хранение в памяти).
+Лабораторная работа №4:
+Разработка приложения с графическим интерфейсом на Flutter
 
-A new Flutter project.
+Локальное хранение данных в памяти без использования БД
 
-## Getting Started
+Реализация операций CRUD (добавление, редактирование, удаление)
 
-This project is a starting point for a Flutter application.
+Валидация пользовательского ввода
 
-A few resources to get you started if this is your first Flutter project:
+Визуализация данных в таблицах
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Многооконная архитектура
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Лабораторная работа №5:
+Интеграция базы данных SQLite
+
+Хранение данных в таблицах БД с сохранением изменений
+
+Экспорт данных из БД в файл и импорт из файла в БД
+
+Обработка отсутствия подключения к БД (автопереход в локальный режим)
+
+Поддержка двух режимов работы: с БД и без неё
