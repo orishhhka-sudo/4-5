@@ -1,0 +1,36 @@
+// lib/models/service_usage.dart
+import 'resident.dart';
+import 'service.dart';
+
+class ServiceUsage {
+  Resident resident;
+  Service service;
+  String date;
+
+  ServiceUsage({
+    required this.resident,
+    required this.service,
+    required this.date,
+  });
+
+  double getCost() {
+    if (resident.hasBenefits && service is BenefitService) {
+      return (service as BenefitService).getFinalPrice();
+    }
+    return service.price;
+  }
+
+  Map<String, dynamic> toJson() => {
+        'resident': resident.toJson(),
+        'service': service.toJson(),
+        'date': date,
+      };
+
+  factory ServiceUsage.fromJson(Map<String, dynamic> j) => ServiceUsage(
+        resident: Resident.fromJson(Map<String, dynamic>.from(j['resident'])),
+        service: (j['service']['type'] == 'benefit')
+            ? BenefitService.fromJson(Map<String, dynamic>.from(j['service']))
+            : Service.fromJson(Map<String, dynamic>.from(j['service'])),
+        date: j['date'],
+      );
+}
