@@ -1,26 +1,16 @@
-# 4-5
-Для лабораторной работы №4:
-●	создать приложение с графическим интерфейсом;
+# tariffs_app
 
-●	реализовать работу с данными без использования базы данных (локальное хранение в памяти);
+A new Flutter project.
 
-●	обеспечить добавление, редактирование и удаление данных;
+## Getting Started
 
-●	реализовать проверки корректности пользовательского ввода;
+This project is a starting point for a Flutter application.
 
-●	обеспечить визуальное отображение данных в таблицах;
+A few resources to get you started if this is your first Flutter project:
 
-●	реализовать минимум два окна приложения.
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-Для лабораторной работы №5:
-●	подключить базу данных SQLite;
-
-●	реализовать хранение данных в таблицах базы данных;
-
-●	обеспечить добавление, изменение и удаление данных с сохранением в БД;
-
-●	реализовать экспорт данных из БД в файл и импорт данных из файла в БД;
-
-●	обеспечить устойчивость приложения при отсутствии подключения к БД;
-
-●	реализовать возможность работы приложения как с БД, так и без неё.
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
