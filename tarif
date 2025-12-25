@@ -1,0 +1,52 @@
+// lib/models/tariff.dart
+
+class Tariff {
+  String destination;
+  double price;
+
+  Tariff({
+    required this.destination,
+    required this.price,
+  });
+
+  Map<String, dynamic> toJson() => {
+        'type': 'normal',
+        'destination': destination,
+        'price': price,
+      };
+
+  factory Tariff.fromJson(Map<String, dynamic> json) {
+    return Tariff(
+      destination: json['destination'] as String,
+      price: (json['price'] as num).toDouble(),
+    );
+  }
+}
+
+class DiscountedTariff extends Tariff {
+  double discountPercent;
+
+  DiscountedTariff({
+    required String destination,
+    required double price,
+    required this.discountPercent,
+  }) : super(destination: destination, price: price);
+
+  double finalPrice() => price * (1 - discountPercent / 100.0);
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'type': 'discount',
+        'destination': destination,
+        'price': price,
+        'discountPercent': discountPercent,
+      };
+
+  factory DiscountedTariff.fromJson(Map<String, dynamic> json) {
+    return DiscountedTariff(
+      destination: json['destination'] as String,
+      price: (json['price'] as num).toDouble(),
+      discountPercent: (json['discountPercent'] as num).toDouble(),
+    );
+  }
+}
