@@ -1,0 +1,58 @@
+// lib/models/service.dart
+class Service {
+  String name;
+  double price;
+
+  Service({required this.name, required this.price}) {
+    if (name.trim().isEmpty) {
+      throw ArgumentError('Название услуги не может быть пустым');
+    }
+    if (price <= 0) {
+      throw ArgumentError('Цена должна быть положительной');
+    }
+  }
+
+  double finalPrice() => price;
+
+  Map<String, dynamic> toJson() => {
+        'type': 'normal',
+        'name': name,
+        'price': price,
+      };
+
+  factory Service.fromJson(Map<String, dynamic> j) => Service(
+        name: j['name'],
+        price: (j['price'] as num).toDouble(),
+      );
+}
+
+class BenefitService extends Service {
+  double discountPercent;
+
+  BenefitService({
+    required String name,
+    required double price,
+    required this.discountPercent,
+  }) : super(name: name, price: price) {
+    if (discountPercent < 0 || discountPercent > 100) {
+      throw ArgumentError('Скидка 0–100%');
+    }
+  }
+
+  @override
+  double getFinalPrice() => price * (1 - discountPercent / 100);
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'type': 'benefit',
+        'name': name,
+        'price': price,
+        'discountPercent': discountPercent,
+      };
+
+  factory BenefitService.fromJson(Map<String, dynamic> j) => BenefitService(
+        name: j['name'],
+        price: (j['price'] as num).toDouble(),
+        discountPercent: (j['discountPercent'] as num).toDouble(),
+      );
+}
